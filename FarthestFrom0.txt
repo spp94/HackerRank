@@ -1,0 +1,81 @@
+import java.util.*;
+class Main 
+{
+    public static void main(String...args)
+    {
+        long arr[] = {12,1,2,3,4,5,6,7,8,0,9,10,0,0,11};
+        long res = getFarthestElement(arr);
+        System.out.println(res);
+    }
+    public static long getFarthestElement(long[] arr)
+    {
+        long[] value = new long[10000];
+        long[] distance = new long[10000];
+        boolean flag = false;
+        int index = 0;
+        long max_value = 0;
+        int max_index = arr.length-1;
+        for(int i = 0; i < arr.length; i++)
+        {
+            if(arr[i] == 0)
+            {
+                flag = true;
+                for(int j = 0; j < i; j++)
+                {
+                    if(arr[j] == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                     value[index] = arr[j];
+                     distance[index] = i-j;
+                     index++;
+                     break;
+                    }
+                }
+                for(int j = arr.length-1; j > i; j--)
+                {
+                    if(arr[j] == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                     value[index] = arr[j];
+                     distance[index] = j-i;
+                     index++;
+                     break;
+                    }
+                }
+            }
+            else
+            {
+                continue;
+            }
+        }
+        
+        long maxval = 0;
+        for(int i = 0; i < index; i++)
+        {
+            if(value[i] > maxval) maxval = distance[i];
+            System.out.println(value[i] + " "+distance[i]);
+        }
+        long minval = value[0];
+        for(int i = 0; i < index; i++)
+        {
+            if(distance[i] == maxval)
+            {
+                if(value[i] < minval) minval = value[i];
+                //System.out.println(value[i] + " "+distance[i]);
+                //break;
+            }
+        }
+        System.out.println("-----------------------");
+        if(flag == false)
+        {
+            return arr[arr.length-1];
+        }
+        return(minval);
+    }
+}
