@@ -9,28 +9,37 @@ public class Solution {
     /*
      * Complete the timeConversion function below.
      */
-    static String timeConversion(String s) {
-        String zone = s.substring(s.length()-2);
-        System.out.println(zone);
-        s = s.substring(0,s.length()-2);
-        String[] timeZone = s.split(":");
-        int hrs = Integer.parseInt(timeZone[0]);
-        int min = Integer.parseInt(timeZone[1]);
-        int sec = Integer.parseInt(timeZone[2]);
-        if(zone.equals("PM"))
+    static String timeConversion(String s) 
+    {
+        String[] arr = s.trim().split(":");
+        String hours = (arr[0]);
+        String min = (arr[1]);
+        String sec = (arr[2].substring(0,2));
+        String time = arr[2].substring(2);
+        String result = "";
+        if(time.equals("AM"))
         {
-            if(hrs != 12)
-            return ((hrs+12)%24)+s.substring(2);
+            if(Integer.parseInt(hours) <= 11)
+            {
+                result = hours + ":"+ min +":"+ sec;
+            }
             else
-            return s;
+            {
+            result = "00" +":"+ min +":"+ sec;
+            }
         }
         else
         {
-            if(hrs == 12)
-             return "00"+s.substring(2);
+            if(Integer.parseInt(hours) == 12)
+            {
+                result = hours + ":"+ min +":"+ sec;
+            }
             else
-             return s;
+            {
+                result = (Integer.parseInt(hours)+12) + ":"+ min +":"+ sec;
+            }
         }
+        return result;    
     }
 
     private static final Scanner scan = new Scanner(System.in);
