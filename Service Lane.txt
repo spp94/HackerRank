@@ -1,0 +1,36 @@
+import java.util.*;
+class Solution 
+{
+    static int[] arr = new int[100000];
+    public static void main(String...args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String[] arg1 = sc.nextLine().trim().split(" ");
+        int n = Integer.parseInt(arg1[0]);
+        int t = Integer.parseInt(arg1[1]);
+        String[] arg2 = sc.nextLine().trim().split(" ");
+        for(int i = 0; i < n; i++)
+        {
+            arr[i] = Integer.parseInt(arg2[i]);
+        }
+        for(int i = 1; i <= t; i++)
+        {
+            String[] arg3 = sc.nextLine().trim().split(" ");
+            int x = Integer.parseInt(arg3[0]);
+            int y = Integer.parseInt(arg3[1]);
+            System.out.println(maxSize(x,y));
+        }
+    }
+    public static int maxSize(int i, int j)
+    {
+        int min = arr[i];
+        for(int k = i; k <= j; k++)
+        {
+            if(arr[k] <= min)
+            {
+                min = arr[k];
+            }
+        }
+        return min;
+    }
+}
