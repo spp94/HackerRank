@@ -1,0 +1,42 @@
+import java.util.*;
+class Solution 
+{
+    public static int count = 0;
+    public static int pageNumber = 1;
+    
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        String[] arg1 = sc.nextLine().trim().split(" ");
+        int n = Integer.parseInt(arg1[0]);
+        int k = Integer.parseInt(arg1[1]);
+        String[] arg2 = sc.nextLine().trim().split(" ");
+        for(int i = 0; i < n; i++)
+        {
+         special(Integer.parseInt(arg2[i]),k);   
+        }
+        System.out.println(count);
+    }
+    public static void special(int key, int maxKey)
+    {
+        int m = (key % maxKey == 0) ? key/maxKey : (key/maxKey) + 1;
+        int start = 1;
+        for(int i = 1; i <= m; i++)
+        {
+            //System.out.println("-------"+pageNumber+"----------");
+            for(int j = start; j < start+maxKey && j <= key; j++)
+            {
+                //System.out.print(j+" ");
+                if(pageNumber == j)
+                {
+                  //System.out.println(pageNumber+" "+j);
+                  count++;
+                  break;
+                }
+            }
+            //System.out.println();
+            start += maxKey;
+            pageNumber++;
+        }
+    }
+}
