@@ -1,0 +1,35 @@
+import java.util.*;
+class Main 
+{
+    public static void main(String...args)
+    {
+        Scanner sc = new Scanner(System.in);
+        LinkedList<Integer> list = new LinkedList<Integer>();
+        int n = Integer.parseInt(sc.nextLine());
+        String[] input = sc.nextLine().trim().split(" ");
+        for(int i = 0; i < n; i++)
+        {
+            list.add(Integer.parseInt(input[i]));
+        }
+        int key = Integer.parseInt(sc.nextLine());
+        int list_size = list.size();
+        System.out.println("List Size = "+list_size+" Key = "+key);
+        if(key <= list_size)
+        {
+            int start_k = list.get(key-1);
+            int end_k = list.get(list_size-key);
+            System.out.println("At "+(key-1)+" Position = "+start_k);
+            System.out.println("At "+(list_size-key)+" Position = "+end_k);
+            list.set(key-1,end_k);
+            list.set(list_size-key,start_k);
+            for(Integer item : list)
+            {
+                System.out.print(item + " ");
+            }
+        }
+        else
+        {
+            System.out.println("Not Possible !!!");
+        }
+    }
+}
