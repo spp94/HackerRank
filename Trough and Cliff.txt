@@ -1,0 +1,117 @@
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main(String[] args)throws IOException
+    {
+        //Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        //String[] input = sc.nextLine().trim().split(" ");
+        int[] arr = new int[n];
+        for(int i = 0; i < n ;i++)
+        {
+            arr[i] = Integer.parseInt(br.readLine());
+        }
+        if(n > 1)
+        {
+        String[] cliff = new String[n];
+        String[] trough = new String[n];
+        int trough_count = 0, cliff_count = 0;
+        for(int i = 0; i < n; i++)
+        {
+            if(i == 0)
+            {
+                if(arr[i] < arr[i+1])
+                {
+                    trough[trough_count++] = arr[i]+","+i;
+                }
+                else if(arr[i] > arr[i+1])
+                {
+                    cliff[cliff_count++] = arr[i]+","+i;
+                }
+                else
+                {
+                    // do nothing
+                }
+            }
+            else if(i == n-1)
+            {
+                if(arr[i] < arr[i-1])
+                {
+                    trough[trough_count++] = arr[i]+","+i;
+                }
+                else if(arr[i] > arr[i-1])
+                {
+                    cliff[cliff_count++] = arr[i]+","+i;
+                }
+                else
+                {
+                    // do nothing
+                }
+            }
+            else
+            {
+                if(arr[i] < arr[i-1] && arr[i] < arr[i+1])
+                {
+                    trough[trough_count++] = arr[i]+","+i;
+                }
+                else if(arr[i] > arr[i-1] && arr[i] > arr[i+1])
+                {
+                    cliff[cliff_count++] = arr[i]+","+i;
+                }
+                else
+                {
+                    // do nothing
+                }
+            }
+        }
+        
+        System.out.println("Cliff");
+        for(int i = 0; i < cliff_count; i++)
+        {
+            System.out.println(cliff[i]);
+        }
+        
+        System.out.println("Trough");
+        for(int i = 0; i < trough_count; i++)
+        {
+            System.out.println(trough[i]);
+        }
+        int max_cliff_difference = 0;
+        for(int i = 0; i < cliff_count-1; i++)
+        {
+            int index1 = Integer.parseInt(cliff[i].split(",")[1]);
+            int index2 = Integer.parseInt(cliff[i+1].split(",")[1]);
+                int diff = Math.abs(index2-index1);
+                if(diff > max_cliff_difference)
+                {
+                    max_cliff_difference = diff;
+                }
+        }
+        
+        int max_trough_difference = 0;
+        for(int i = 0; i < trough_count-1; i++)
+        {
+            int index1 = Integer.parseInt(trough[i].split(",")[1]);
+            int index2 = Integer.parseInt(trough[i+1].split(",")[1]);
+                int diff = Math.abs(index2-index1);
+                if(diff > max_trough_difference)
+                {
+                    max_trough_difference = diff;
+                }
+        }
+        
+        System.out.println(max_trough_difference > max_cliff_difference ? max_trough_difference : max_cliff_difference);
+        }
+        else
+        {
+            System.out.println("0");
+        }
+    }
+}
