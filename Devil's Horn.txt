@@ -1,0 +1,49 @@
+/* IMPORTANT: Multiple classes and nested static classes are supported */
+ 
+/*
+ * uncomment this if you want to read input.
+//imports for BufferedReader
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+ 
+//import for Scanner and other utility classes
+import java.util.*;
+*/ 
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception 
+    {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        String s = sc.nextLine();
+        //s = s.replace("|\\",)
+        //System.out.println("Input = "+s);
+        System.out.println(maxLengthDHS(s));
+    }
+    public static int maxLengthDHS(String s)
+    {
+        //System.out.println("String = "+s);
+        int count_1 = 0, count_2 = 0, count_3 = 0, count_m = 0;
+        //System.out.println(count_1+" "+count_2+" "+count_3+" "+count_m);
+        if(!s.contains("|") || !s.contains("\\") || !s.contains("/"))
+        {
+            return -1;
+        }
+        else
+        {
+            int findex = s.indexOf('|');
+            int lindex = s.lastIndexOf('|');
+            String substr = s.substring(findex+1, lindex);
+            int firstIndex = substr.indexOf('\\');
+            int lastIndex = substr.lastIndexOf('/');
+            String str = substr.substring(firstIndex+1, lastIndex);
+            for(int i = 0; i < str.length(); i++)
+            {
+                if(str.charAt(i) == 'm') count_m++;
+            }
+            return 4 + count_m;
+        }
+    }
+}
