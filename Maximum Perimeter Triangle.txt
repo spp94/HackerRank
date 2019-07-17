@@ -1,0 +1,135 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the maximumPerimeterTriangle function below.
+    static int[] maximumPerimeterTriangle(int[] a) 
+    {
+        int[] arr = new int[3];
+        Arrays.sort(a);
+        boolean flag = false;
+        int max = 0;
+        for(int i = a.length-1; i >= 2; i--)
+        {
+            int x = a[i-2];
+            int y = a[i-1];
+            int z = a[i];
+            System.out.println(x+" "+y+" "+z);
+            if(x == y && y == z)
+            {
+                System.out.println("SPP");
+                int perimeter = x+y+z;
+                if(perimeter > max)
+                {
+                    max = perimeter;
+                    arr[0] = x;
+                    arr[1] = y;
+                    arr[2] = z;
+                    flag = true;
+                }
+            }
+            else if(x+y > z && y+z > x && x+z >y)
+            {
+                int perimeter = x+y+z;
+                if(perimeter > max)
+                {
+                    max = perimeter;
+                    arr[0] = x;
+                    arr[1] = y;
+                    arr[2] = z;
+                    flag = true;
+                }
+                if(perimeter == max)
+                {
+                    if(arr[2] > z)
+                    {
+                        // do nothing
+                    }
+                    else if(arr[2] < z)
+                    {
+                        max = perimeter;
+                        arr[0] = x;
+                        arr[1] = y;
+                        arr[2] = z;
+                        flag = true;
+                    }
+                    else
+                    {
+                     if(arr[0] < x)
+                    {
+                       // do nothing
+                    }
+                    else if(arr[0] > x)
+                    {
+                        max = perimeter;
+                        arr[0] = x;
+                        arr[1] = y;
+                        arr[2] = z;
+                        flag = true;
+                    }
+                    else
+                    {
+                        // do nothing
+                    }   
+                    }
+                }
+            }
+            else
+            {
+                // do nothing
+            }
+        }
+
+        if(flag == false)
+        {
+            int[] t = new int[1];
+            t[0] = -1;
+            return t;
+        }
+        else
+        {
+            return arr;
+        }
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int n = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int[] sticks = new int[n];
+
+        String[] sticksItems = scanner.nextLine().split(" ");
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int i = 0; i < n; i++) {
+            int sticksItem = Integer.parseInt(sticksItems[i]);
+            sticks[i] = sticksItem;
+        }
+
+        int[] result = maximumPerimeterTriangle(sticks);
+
+        for (int i = 0; i < result.length; i++) {
+            bufferedWriter.write(String.valueOf(result[i]));
+
+            if (i != result.length - 1) {
+                bufferedWriter.write(" ");
+            }
+        }
+
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
