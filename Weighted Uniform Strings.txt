@@ -1,0 +1,113 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    // Complete the weightedUniformStrings function below.
+    static String[] weightedUniformStrings(String s, int[] queries) 
+    {
+        s = s.trim().toLowerCase();
+        String[] res = new String[queries.length];
+        int[] t = new int[s.length()];
+        String temp = "";
+        if(s.length() > 1)
+        {
+        int count = 1;
+        t[0] = (s.charAt(0)-96);
+        for(int i = 1; i < s.length()-1; i++)
+        {
+            if(s.charAt(i) == s.charAt(i-1))
+            {
+                count = count + 1;
+                //System.out.println(count*(s.charAt(i)-96));
+                t[i] = count*(s.charAt(i)-96);
+            }
+            else
+            {
+                count = s.charAt(i) == s.charAt(i+1) ? 1 : 0;
+                //System.out.println((s.charAt(i)-96));
+                t[i] = (s.charAt(i)-96);
+            }
+        }
+        //System.out.println("Count = "+count);
+        if(count == 0)
+        t[s.length()-1] = (s.charAt(s.length()-1)-96);
+        else
+        {
+            if(s.charAt(s.length()-1) == s.charAt(s.length()-2))
+            {
+                t[s.length()-1] = ((count+1)*(s.charAt(s.length()-1)-96));
+            }
+            else
+            {
+                t[s.length()-1] = (s.charAt(s.length()-1)-96);
+            }
+        }
+        //System.out.println(temp);
+        }
+        else
+        {
+            t[0] =  (s.charAt(0)-96);
+            //System.out.println(temp);
+        }
+        for(int i = 0; i < s.length(); i++)
+        {
+            System.out.print(t[i]+" ");
+        }
+        System.out.println();
+        for(int i = 0; i < queries.length; i++)
+        {
+            int index = -1;
+            for(int j = 0; j < s.length(); j++)
+            {
+            if(t[j] == (queries[i]))
+            {
+                index = 1;
+                break;
+            }
+            }
+            res[i] = (index == 1) ? "Yes" : "No";
+        }
+        return res;
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scanner.nextLine();
+
+        int queriesCount = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int[] queries = new int[queriesCount];
+
+        for (int i = 0; i < queriesCount; i++) {
+            int queriesItem = scanner.nextInt();
+            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+            queries[i] = queriesItem;
+        }
+
+        String[] result = weightedUniformStrings(s, queries);
+
+        for (int i = 0; i < result.length; i++) {
+            bufferedWriter.write(result[i]);
+
+            if (i != result.length - 1) {
+                bufferedWriter.write("\n");
+            }
+        }
+
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+}
