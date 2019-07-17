@@ -1,0 +1,51 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static boolean isKarpekarNumber(long n)
+    {
+        long l = (n+"").length();
+        long square = n*n;
+        long d = (long)Math.pow(10,l);
+        long n1 = square % d;
+        long n2 = (long)(square / d);
+        //System.out.println(l+" "+square+" "+d+" "+n1+" "+n2);
+        return n1+n2 == n;
+    }
+    // Complete the kaprekarNumbers function below.
+    static void kaprekarNumbers(int p, int q) 
+    {
+        int count = 0;
+        for(int i = p; i <= q; i++)
+        {
+            if(isKarpekarNumber(i)) 
+            {
+                System.out.print(i+" ");
+                count++;
+            }
+        }
+        if(count == 0)
+        {
+            System.out.println("INVALID RANGE");
+        }
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int p = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        int q = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        kaprekarNumbers(p, q);
+
+        scanner.close();
+    }
+}
