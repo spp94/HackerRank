@@ -11,25 +11,13 @@ public class Solution {
     // Complete the strangeCounter function below.
     static long strangeCounter(long t) 
     {
-        long res = 0, counter = 0, temp = 3;
-        while(true)
-        {
-            for(long j = temp; j >= 1; j--)
-            {
-                counter++;
-                System.out.println(counter+" "+j);
-                if(counter == t)
-                {
-                    return j;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            temp = temp * 2;
+        long rem = 3;
+        while(t > rem)
+        { 
+            t = t-rem;
+            rem *= 2;
         }
-        //return 0;
+        return (rem-t+1);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
