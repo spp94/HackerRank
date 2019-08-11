@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for (int a0 = 0; a0 < m; a0++) {
+            int a = in.nextInt();
+            int b = in.nextInt();
+            int k = in.nextInt();
+ 
+            map.put(a, map.getOrDefault(a, 0) + k);
+            if (b + 1 <= n) {
+                map.put(b + 1, map.getOrDefault(b + 1, 0) - k);
+            }
+        }
+        in.close();
+
+        long max = map.firstEntry().getValue();
+        long sum = 0;
+        for (Entry<Integer, Integer> e : map.entrySet()) {
+            sum += e.getValue();
+            if (sum > max) {
+                max = sum;
+            }
+        }
+
+        System.out.println(max);
+    }
+}import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for (int a0 = 0; a0 < m; a0++) {
+            int a = in.nextInt();
+            int b = in.nextInt();
+            int k = in.nextInt();
+ 
+            map.put(a, map.getOrDefault(a, 0) + k);
+            if (b + 1 <= n) {
+                map.put(b + 1, map.getOrDefault(b + 1, 0) - k);
+            }
+        }
+        in.close();
+
+        long max = map.firstEntry().getValue();
+        long sum = 0;
+        for (Entry<Integer, Integer> e : map.entrySet()) {
+            sum += e.getValue();
+            if (sum > max) {
+                max = sum;
+            }
+        }
+
+        System.out.println(max);
+    }
+}
