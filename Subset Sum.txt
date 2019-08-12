@@ -1,21 +1,33 @@
-/******************************************************************************
-
-                            Online Java Compiler.
-                Code, Compile, Run and Debug java program online.
-Write your code in this editor and press "Run" button to execute it.
-
-*******************************************************************************/
-
-public class Main
+import java.util.*;
+class Main 
 {
-	public static void main(String[] args) 
-	{
-		int[] arr = {1,2,3};
-		int sum = 0;
-		for(int i = 0; i < arr.length; i++)
-		{
-            sum += arr[i];
-		}
-		System.out.println(sum*(Math.pow(2,arr.length-1)));
-	}
+    public static void main(String...args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Array Size ");
+        int n = Integer.parseInt(sc.nextLine());
+        int[] a = new int[n];
+        System.out.println("Enter the Array Elements");
+        String[] s = sc.nextLine().trim().split(" ");
+        for(int i = 0; i < s.length; i++)
+        {
+            a[i] = Integer.parseInt(s[i]);
+        }
+        System.out.println("Enter the key value");
+        int key = Integer.parseInt(sc.nextLine());
+        subsetSum(a, key);
+    }
+    public static void subsetSum(int[] a, int key)
+    {
+        for(int i = 0; i < a.length; i++)
+        {
+            for(int j = i+1; j < a.length; j++)
+            {
+                if(a[i]+a[j] == key)
+                {
+                    System.out.println(a[i]+" + "+a[j]+" = "+(a[i]+a[j]));
+                }
+            }
+        }
+    }
 }
