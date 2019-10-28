@@ -1,0 +1,49 @@
+public class ArrayQueue {
+	int[] items;
+	int front, rear, count;
+	public ArrayQueue(int size) {
+		items = new int[size];
+	}
+	
+	private boolean isFull(){
+		return rear == items.length;
+	}
+	
+	private boolean isEmpty(){
+		return count == 0;
+	}
+	
+	public void enqueue(int item){
+		if(!isFull()){
+			items[rear++] = item;
+			count++;
+		}
+		else{
+			throw new IllegalArgumentException();
+		}
+	}
+	
+	public void dequeue(){
+		if(!isEmpty()){
+			items[front++] = 0;
+			count--;
+		}
+		else{
+		throw new IllegalArgumentException();	
+		}
+	}
+	
+	public void print(){
+		for(int i = front; i < rear; i++){
+			System.out.print(items[i] + " ");
+		}
+		System.out.println();
+	}
+	
+	public int peek(){
+		if(!isEmpty())
+		return items[front];
+		else
+			throw new IllegalArgumentException();
+	}
+}
