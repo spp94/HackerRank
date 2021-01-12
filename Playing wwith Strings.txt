@@ -30,7 +30,7 @@ class Codechef
 		    boolean flag = true;
 		    for(int i = 0; i < 2; i++)
 		    {
-		        if(f1[i] == f2[i])
+		        if(f1[i] == f2[i]) 
 		        {
 		            continue;
 		        }
