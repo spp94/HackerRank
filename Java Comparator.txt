@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Checker implements Comparator<Player>
+class Checker implements Comparator<Player> 
 {
     @Override
     public int compare(Player p1, Player p2)
