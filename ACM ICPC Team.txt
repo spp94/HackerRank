@@ -15,7 +15,7 @@ public class Solution {
      int[] res = new int[2];
      int[] count = new int[l*l];
      for(int i = 0; i < l; i++)
-     {
+     { 
          for(int j = i+1; j < l; j++)
          {
              int c = 0;
