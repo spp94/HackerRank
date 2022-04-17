@@ -9,7 +9,7 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the anagram function below.
-    static int anagram(String s) 
+    static int anagram(String s)
     {
         int l = s.length();
         if(l%2 == 1)
