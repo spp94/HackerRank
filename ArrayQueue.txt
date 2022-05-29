@@ -22,7 +22,7 @@ public class ArrayQueue {
 	}
 	public void enqueue(int item){
 			isFull();
-			items[rear++] = item;
+			items[rear++] =  item;
 			count++;
 	}
 	public void dequeue(){
