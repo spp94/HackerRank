@@ -9,7 +9,7 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the birthday function below.
-    static int birthday(List<Integer> s, int d, int m)
+    static int birthday(List<Integer> s, int d, int m) 
     {
         int count = 0;
         for(int i = 0; i <= s.size()-m; i++)
