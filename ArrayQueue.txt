@@ -1,4 +1,4 @@
-public class ArrayQueue {
+public class ArrayQueue { 
 	private int[] items;
 	private int front, rear, count;
 	ArrayQueue(int size){
